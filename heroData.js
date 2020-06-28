@@ -29,11 +29,11 @@ var toArray = function (data) {
   });
 };
 
-const checkDir = fs.existsSync('data');
+const checkDir = fs.existsSync('heroData');
 console.log(checkDir);
 if (!checkDir) {
   fs.mkdir(
-    'data',
+    'heroData',
     {
       recursive: false,
     },
@@ -123,7 +123,7 @@ const Task = async function () {
     await getData('armor')
       .then(() => {
         const date = new Date();
-        fs.writeFileSync('./data/README.md', date, function (err, data) {
+        fs.writeFileSync('./heroData/README.md', date, function (err, data) {
           if (err) {
             console.log(err);
           } else {
