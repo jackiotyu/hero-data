@@ -43,16 +43,16 @@ if (!checkDir) {
 
 // //连接数据库
 
-const getData = async function (attribute) {
+const getData = async function () {
   const con = await conn(Url)
   const db = con.db('ForHonorHero')
   console.log('connect database')
-  const col = db.collection(attribute)
+  const col = db.collection('HeroData')
   try {
 
     let data = await toArray(col.find({}, { projection: { _id: 0 } }))
     data = JSON.stringify(data)
-    await fs.writeFileSync(`./data/${attribute}.json`, data, function (err, data) {
+    await fs.writeFileSync(`./data/data.json`, data, function (err, data) {
       if (err) {
         console.log(err)
       } else {
@@ -65,7 +65,7 @@ const getData = async function (attribute) {
 }
 const Task = async function () {
   try {
-    await getData('weapon')
+//     await getData('weapon')
     getData('armor').then(() => {
       const date = new Date()
       fs.writeFileSync('./data/README.md', date, function (err, data) {
