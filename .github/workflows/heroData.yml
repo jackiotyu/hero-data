@@ -3,9 +3,6 @@
 
 name: 更新英雄图片数据
 on:
-#   push:
-#     branches:
-#       - DEV
   schedule:
   - cron: "1 1 1,15 * *"
 jobs:
