@@ -1,7 +1,8 @@
 const MongoClient = require('mongodb').MongoClient;
 const fs = require('fs');
 var pass = process.env.PASS;
-var Url = `mongodb+srv://jack:${pass}@database-lnq44.azure.mongodb.net/test?retryWrites=true&w=majority`;
+var baseurl = process.env.BASEURL;
+var Url = `mongodb://jack:${pass}@${baseurl}/?authsource=admin`;
 
 // 连接数据库函数
 var conn = function (url) {
@@ -45,42 +46,14 @@ if (!checkDir) {
   );
 }
 
-const HeroList = [
-  'Aramusha',
-  'Berserker',
-  'Black Prior',
-  'Centurion',
-  'Conqueror',
-  'Gladiator',
-  'Highlander',
-  'Hitokiri',
-  'Jiang Jun',
-  'Jormungandr',
-  'Kensei',
-  'Lawbringer',
-  'Nobushi',
-  'Nuxia',
-  'Orochi',
-  'Peacekeeper',
-  'Raider',
-  'Shaman',
-  'Shaolin',
-  'Shinobi',
-  'Shugoki',
-  'Tiandi',
-  'Valkyrie',
-  'Warden',
-  'Warlord',
-  'Zhanhu',
-];
-
 // //连接数据库
 
 const getData = async function (attribute) {
   const con = await conn(Url);
-  const db = con.db('ForHonorHero');
+  const db = con.db('data');
   console.log('connect database');
   const col = db.collection('HeroData');
+  const HeroList = await col.distinct('hero')
   console.log('now');
   try {
     for (const hero of HeroList) {
@@ -97,7 +70,7 @@ const getData = async function (attribute) {
               qualitySort: 0,
             },
           }
-        )
+        ).sort({ qualitySort: -1, season:-1 })
       );
       data = JSON.stringify(data);
       fs.writeFileSync(`./heroData/${hero}_${attribute}.json`, data, function (

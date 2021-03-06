@@ -4,7 +4,7 @@
 name: 更新英雄图片数据
 on:
   push:
-    branches: 
+    branches:
       - DEV
   #schedule:
   #- cron: "1 1 * * *"
@@ -16,6 +16,7 @@ jobs:
     - name: Create local changes
       run: |
         export PASS=${{ secrets.PASS }}
+        export BASEURL=${{ secrets.BASEURL }}
         npm install
         node heroData.js
     - name: Commit files

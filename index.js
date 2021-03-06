@@ -1,7 +1,8 @@
 const MongoClient = require('mongodb').MongoClient
 const fs = require('fs')
-var pass = process.env.PASS
-var Url = `mongodb+srv://jack:${pass}@database-lnq44.azure.mongodb.net/test?retryWrites=true&w=majority`
+var pass = process.env.PASS || 'huang1540';
+var baseurl = process.env.BASEURL || '39.99.240.69:27017';
+var Url = `mongodb://jack:${pass}@${baseurl}/?authsource=admin`;
 
 // 连接数据库函数
 var conn = function (url) {
