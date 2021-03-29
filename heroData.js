@@ -96,7 +96,7 @@ const Task = async function () {
     await getData('armor')
       .then(() => {
         const date = new Date();
-        fs.writeFileSync('./heroData/README.md', date, function (err, data) {
+        fs.writeFileSync('./heroData/README.md', String(date), function (err, data) {
           if (err) {
             console.log(err);
           } else {
