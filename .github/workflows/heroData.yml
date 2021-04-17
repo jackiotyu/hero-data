@@ -17,6 +17,7 @@ jobs:
       run: |
         export PASS=${{ secrets.PASS }}
         export BASEURL=${{ secrets.BASEURL }}
+        git checkout master
         npm install
         node heroData.js
     - name: Commit files
