@@ -1,32 +1,32 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 更新英雄图片数据
-on:
-  push:
-    branches:
-    - updateTag
-  # schedule:
-  # - cron: "1 1 1,8,15,22 * *"
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - name: Create local changes
-      run: |
-        export PASS=${{ secrets.PASS }}
-        export BASEURL=${{ secrets.BASEURL }}
-        npm install
-        node heroData.js
-    - name: Commit files
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add -A
-        note=`git status`
-        git commit -am "$note"
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.token }}
+# name: 更新英雄图片数据
+# on:
+#   push:
+#     branches:
+#     - updateTag
+#   # schedule:
+#   # - cron: "1 1 1,8,15,22 * *"
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@master
+#     - name: Create local changes
+#       run: |
+#         export PASS=${{ secrets.PASS }}
+#         export BASEURL=${{ secrets.BASEURL }}
+#         npm install
+#         node heroData.js
+#     - name: Commit files
+#       run: |
+#         git config --local user.email "action@github.com"
+#         git config --local user.name "GitHub Action"
+#         git add -A
+#         note=`git status`
+#         git commit -am "$note"
+#     - name: Push changes
+#       uses: ad-m/github-push-action@master
+#       with:
+#         github_token: ${{ secrets.token }}
