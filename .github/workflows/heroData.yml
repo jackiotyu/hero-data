@@ -5,7 +5,7 @@ name: 更新英雄图片数据
 on:
   push:
     branches:
-    - tag
+    - updateTag
   # schedule:
   # - cron: "1 1 1,8,15,22 * *"
 jobs:
