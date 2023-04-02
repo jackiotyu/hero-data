@@ -8,6 +8,7 @@ package-lock.json
 .env.*.local
 .env
 .env.build
+test.js
 
 # Log files
 npm-debug.log*
