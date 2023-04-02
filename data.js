@@ -50,9 +50,9 @@ const getData = async function (attribute) {
   const col = db.collection('HeroData')
   try {
 
-    let data = await toArray(col.find({}, { projection: { _id: 0 } }))
+    let data = await toArray(col.find({attribute}, { projection: { _id: 0 } }))
     data = JSON.stringify(data)
-    await fs.writeFileSync(`./data/data.json`, data, function (err, data) {
+    await fs.writeFileSync(`./data/${attribute}.json`, data, function (err, data) {
       if (err) {
         console.log(err, 'err')
       } else {
